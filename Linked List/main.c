@@ -60,6 +60,28 @@ void insertAfter(int data,struct node *prev)
     a->next = prev->next;
     prev->next = a;
 }
+void insertBetween(int data,struct node **head)
+{
+    struct node *a,*b,*inserting;
+    b = *head;
+    while(b != NULL && b->data <= data)
+    {
+        if(b->data == data) return;
+        a = b;
+        b = b->next;
+    }
+    inserting = createNode(data);
+    if(b == *head)
+    {
+        inserting->next = *head;
+        *head = inserting;
+    }
+    else
+    {
+        a->next = inserting;
+        inserting->next = b;
+    }
+}
 
 void writeList(struct node *head)
 {
